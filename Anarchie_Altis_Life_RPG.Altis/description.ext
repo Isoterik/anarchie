@@ -1,0 +1,244 @@
+author = "Tonic";
+onLoadName = "Altis Life RPG v3.1.4";
+onLoadMission = "A RPG game mode developed by TAW_Tonic and customized by us";
+joinUnassigned = 1;
+respawn = BASE;
+respawndelay = 5;
+disabledAI = true;
+disableChannels[]={0,1,2};
+enableDebugConsole = 1;
+respawnDialog = 0;
+loadScreen = "Loading.jpg";
+
+class Header
+{
+	gameType = RPG;
+	minPlayers = 1;
+	maxPlayers = 75;
+};
+
+wreckLimit = 3;
+wreckRemovalMinTime = 60;
+wreckRemovalMaxTime = 320;
+corpseLimit = 150;
+corpseRemovalMinTime = 999;
+corpseRemovalMaxTime = 9999;
+
+#include "dialog\MasterHandler.h"
+
+class RscTitles
+{
+	#include "dialog\ui.hpp"
+	#include "dialog\progress.hpp"
+	#include "dialog\hud_nameTags.h"
+};
+
+class CfgFunctions
+{
+	#include "Functions.h"
+};
+
+class CfgSounds
+{
+	sounds[] = {};
+	class SirenLong
+	{
+		name = "SirenLong";
+		sound[] = {"\sounds\Siren_Long.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+	class ambulance
+	{
+		name = "ambulance";
+		sound[] = {"\sounds\ambulance.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+    class tazersound
+	{
+		name = "Tazersound";
+		sound[] = {"\sounds\tazer.ogg", 0.25, 1};
+		titles[] = {};
+	};
+	
+    class carlock
+	{
+		name = "carlock";
+		sound[] = {"\sounds\car_lock.ogg", 0.4, 1};
+		titles[] = {};
+	};
+    
+	class carunlock
+	{
+		name = "carunlock";
+		sound[] = {"\sounds\car_unlock.ogg", 0.4, 1};
+		titles[] = {};
+	};
+	
+	class caralarm
+	{
+		name = "caralarm";
+		sound[] = {"\sounds\car_alarm.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+	class handcluffs
+	{
+		name = "handcluffs";
+		sound[] = {"\sounds\cop_hundcluffs.ogg", 0.25, 1};
+		titles[] = {};
+	};
+	
+	class punch
+	{
+		name = "punch";
+		sound[] = {"\sounds\civ_punch.ogg", 0.75, 1};
+		titles[] = {};
+	};
+	
+	class flashbang
+	{
+		name = "flashbang";
+		sound[] = {"\sounds\flashbang.ogg", 1.0, 1};
+		titles[] = {};
+	};
+	
+	class PhotoSound
+	{
+        name = "PhotoSound";
+        sound[] = {"\sounds\camera_shot.ogg", 0.75, 1};
+        titles[] = {};
+    };
+
+    class empwarn
+	{
+		name = "empwarn";
+		sound[] = {"\sounds\empwarn.ogg", 1.0, 1};
+		titles[] = {};
+	};
+
+	class empacsound
+	{
+		name = "empacsound";
+		sound[] = {"sounds\empac.ogg", db-5, 1};
+		titles[] = {};
+	};
+};
+
+class CfgDebriefing
+{
+	class NotWhitelisted
+	{
+		title = "Mission Fehlgeschlagen";
+		subtitle = "Du bist nicht gewhitelisted für diesen Slot!";
+		description = "Du hast nicht die brechtigung für diesen Slot.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+	
+	class Blacklisted
+	{
+		title = "Ausgeschlossen";
+		subtitle = "Cheaten, Glitchen und Bug usen wird nicht tolleriert!";
+		description = "Du wurdest vom Spiel entfernt!";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+	
+	class SpyGlass
+	{
+		title = "Das SpyGlass sieht dich!";
+		subTitle = "Du wurdest vom SpyGlass ertappst.";
+		description = "Du wurdest beim cheating erwischt und gemeldet. Genie�e deinen Tag.";
+		pictureBackground = "";
+		picture = "";
+		pictureColor[] = {0,0.3,0.6,1};
+	};
+};
+
+class CfgNotifications
+{
+	class MedicalRequestEmerg
+	{
+		title = "Arzt gefragt";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		duration = 5;
+		priority = 7;
+	};
+
+	class AdacRequestEmerg
+	{
+		title = "ATAC gefragt";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		duration = 5;
+		priority = 7;
+	};
+	
+	class DeliveryAssigned
+	{
+		title = "Delivery Job akzeptiert";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%1";
+		duration = 10;
+		priority = 7;
+	};
+	
+	class DeliveryFailed
+	{
+		title = "Delivery Job gescheitert";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+		description = "%1";
+		duration = 7;
+		priority = 7;
+	};
+	
+	class DeliverySucceeded
+	{
+		title = "Delivery Job abgeschlossen";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcondone_ca.paa";
+		description = "%1";
+		duration = 6;
+		priority = 6;
+	};
+	
+	class TextMessage
+	{
+		title = "Nachricht erhalten";
+		iconPicture = "icons\messagenew.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class PoliceDispatch
+	{
+		title = "110 Notruf";
+		iconPicture = "icons\messagepolice.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class AdminDispatch
+	{
+		title = "Admin Nachricht";
+		iconPicture = "icons\messageadmin.paa";
+		description = "%1";
+		duration = 10;
+		priority = 6;
+	};
+	
+	class AdminMessage
+	{
+		title = "Admin Nachricht";
+		iconPicture = "icons\messageadmin.paa";
+		description = "%1";
+		duration = 10;
+		priority = 5;
+	};
+};
